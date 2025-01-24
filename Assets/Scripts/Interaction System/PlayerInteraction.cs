@@ -11,10 +11,11 @@ namespace GGJ2025.InteractionSystem {
 
 		public float maxInteractionDistance = 1.5f;
 
-		private InputAction interactAction;
+		public InputSystem_Actions actions;
 
 		private void Start() {
-			interactAction.performed += _ => Interact();
+			actions = new InputSystem_Actions();
+			actions.Player.Interact.performed += ctx => Interact();
 			
 		}
 
