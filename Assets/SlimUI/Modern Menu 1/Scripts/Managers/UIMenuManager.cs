@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
@@ -121,12 +121,15 @@ namespace SlimUI.ModernMenu{
 			exitMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			playMenu.SetActive(true);
+			firstMenu.SetActive(false);
+			mainMenu.SetActive(false);
 		}
 		
 		public void PlayCampaignMobile(){
 			exitMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			playMenu.SetActive(true);
+			firstMenu.SetActive(false);
 			mainMenu.SetActive(false);
 		}
 
