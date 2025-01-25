@@ -7,27 +7,28 @@ using UnityEngine.InputSystem;
 using UnityRandom = UnityEngine.Random;
 
 namespace GGJ2025.InteractionSystem {
+	[ExecuteInEditMode]
 	public class PlayerInteraction : MonoBehaviour {
 
-		public float maxInteractionDistance = 1.5f;
+		public float maxInteractionDistance = 5f;
+		public Vector3 interactionOffset;
 
-		public InputSystem_Actions actions;
+		public bool canInteract;
+		public InteractableObject other;
 
-		private void Start() {
-			actions = new InputSystem_Actions();
-			actions.Player.Interact.performed += ctx => Interact();
-			
+
+		private void Update() {
+
+			if (Input.GetKeyDown(KeyCode.E) && canInteract) {
+				other.Interact();
+			}
+
 		}
 
-		private void Interact() {
-			Debug.Log("Interact");
-			RaycastHit hit;
-			if (Physics.Raycast(transform.position, transform.forward, out hit, maxInteractionDistance)) {
-				InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
-				if (interactable != null) {
-					Debug.Log(interactable.name);
-					interactable.Interact();
-				}
+		private void OnTriggerEnter(Collider other) {
+			this.other = other.GetComponent<InteractableObject>();
+			if (other != null) {
+				canInteract = true;
 			}
 		}
 	}
