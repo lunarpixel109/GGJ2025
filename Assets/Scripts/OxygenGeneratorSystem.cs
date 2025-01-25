@@ -17,6 +17,9 @@ namespace GGJ2025 {
 
 		private void Start() {
 			generators = GetComponentsInChildren<OxygenGenerator>();
+			if (generators.Length == 0) {
+				throw new Exception("No Oxygen Generators found in children");
+			}
 		}
 
 
