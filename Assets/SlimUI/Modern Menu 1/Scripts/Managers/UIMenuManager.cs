@@ -117,12 +117,8 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		public void PlayCampaign(){
-			exitMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(false);
-			playMenu.SetActive(true);
-			firstMenu.SetActive(false);
-			mainMenu.SetActive(false);
+		public void PlayCampaign() {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
 		
 		public void PlayCampaignMobile(){
