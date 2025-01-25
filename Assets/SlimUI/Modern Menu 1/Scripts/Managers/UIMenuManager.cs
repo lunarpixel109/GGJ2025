@@ -12,15 +12,12 @@ namespace SlimUI.ModernMenu{
         [Header("MENUS")]
         [Tooltip("The Menu for when the MAIN menu buttons")]
         public GameObject mainMenu;
-        [Tooltip("THe first list of buttons")]
+        [Tooltip("The first list of buttons")]
         public GameObject firstMenu;
         [Tooltip("The Menu for when the PLAY button is clicked")]
-        public GameObject playMenu;
-        [Tooltip("The Menu for when the EXIT button is clicked")]
         public GameObject exitMenu;
         [Tooltip("Optional 4th Menu")]
-        public GameObject extrasMenu;
-
+        
         public enum Theme {custom1, custom2, custom3};
         [Header("THEME SETTINGS")]
         public Theme theme;
@@ -44,7 +41,6 @@ namespace SlimUI.ModernMenu{
         public GameObject PanelCombat;
         [Tooltip("The UI Sub-Panel under KEY BINDINGS for GENERAL")]
         public GameObject PanelGeneral;
-        
 
         // highlights in settings screen
         [Header("SETTINGS SCREEN")]
@@ -82,39 +78,10 @@ namespace SlimUI.ModernMenu{
 
 		void Start(){
 			CameraObject = transform.GetComponent<Animator>();
-
-			playMenu.SetActive(false);
 			exitMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
 			mainMenu.SetActive(true);
-
-			SetThemeColors();
-		}
-
-		void SetThemeColors()
-		{
-			switch (theme)
-			{
-				case Theme.custom1:
-					themeController.currentColor = themeController.custom1.graphic1;
-					themeController.textColor = themeController.custom1.text1;
-					themeIndex = 0;
-					break;
-				case Theme.custom2:
-					themeController.currentColor = themeController.custom2.graphic2;
-					themeController.textColor = themeController.custom2.text2;
-					themeIndex = 1;
-					break;
-				case Theme.custom3:
-					themeController.currentColor = themeController.custom3.graphic3;
-					themeController.textColor = themeController.custom3.text3;
-					themeIndex = 2;
-					break;
-				default:
-					Debug.Log("Invalid theme selected.");
-					break;
-			}
+			
 		}
 
 		public void PlayCampaign() {
@@ -123,15 +90,11 @@ namespace SlimUI.ModernMenu{
 		
 		public void PlayCampaignMobile(){
 			exitMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(false);
-			playMenu.SetActive(true);
 			firstMenu.SetActive(false);
 			mainMenu.SetActive(false);
 		}
 
 		public void ReturnMenu(){
-			playMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(false);
 			exitMenu.SetActive(false);
 			mainMenu.SetActive(true);
 		}
@@ -143,7 +106,7 @@ namespace SlimUI.ModernMenu{
 		}
 
 		public void  DisablePlayCampaign(){
-			playMenu.SetActive(false);
+			mainMenu.SetActive(false);
 		}
 
 		public void Position2(){
@@ -234,21 +197,17 @@ namespace SlimUI.ModernMenu{
 
 		// Are You Sure - Quit Panel Pop Up
 		public void AreYouSure(){
-			exitMenu.SetActive(true);
-			if(extrasMenu) extrasMenu.SetActive(false);
 			DisablePlayCampaign();
+			exitMenu.SetActive(true);
 		}
 
 		public void AreYouSureMobile(){
 			exitMenu.SetActive(true);
-			if(extrasMenu) extrasMenu.SetActive(false);
 			mainMenu.SetActive(false);
 			DisablePlayCampaign();
 		}
 
 		public void ExtrasMenu(){
-			playMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(true);
 			exitMenu.SetActive(false);
 		}
 
