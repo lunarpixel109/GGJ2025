@@ -1,19 +1,14 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 namespace SlimUI.ModernMenu{
 	public class UIMenuManager : MonoBehaviour {
-		private Animator CameraObject;
+
 
 		// campaign button sub menu
         [Header("MENUS")]
         [Tooltip("The Menu for when the MAIN menu buttons")]
         public GameObject mainMenu;
-        [Tooltip("THe first list of buttons")]
-        public GameObject playMenu;
         [Tooltip("The Menu for when the EXIT button is clicked")]
         public GameObject exitMenu;
         
@@ -23,22 +18,8 @@ namespace SlimUI.ModernMenu{
         private int themeIndex;
         public ThemedUIData themeController;
 
-        [Header("PANELS")]
-        [Tooltip("The UI Panel parenting all sub menus")]
-        public GameObject mainCanvas;
-
-		[Header("SFX")]
-        [Tooltip("The GameObject holding the Audio Source component for the HOVER SOUND")]
-        public AudioSource hoverSound;
-        [Tooltip("The GameObject holding the Audio Source component for the AUDIO SLIDER")]
-        public AudioSource sliderSound;
-        [Tooltip("The GameObject holding the Audio Source component for the SWOOSH SOUND when switching to the Settings Screen")]
-        public AudioSource swooshSound;
-
 		void Start(){
-			CameraObject = transform.GetComponent<Animator>();
-
-			playMenu.SetActive(false);
+			
 			exitMenu.SetActive(false);
 			mainMenu.SetActive(true);
 
@@ -76,31 +57,19 @@ namespace SlimUI.ModernMenu{
 		
 		public void PlayCampaignMobile(){
 			exitMenu.SetActive(false);
-			playMenu.SetActive(true);
 			mainMenu.SetActive(false);
 		}
 
 		public void ReturnMenu(){
-			playMenu.SetActive(false);
+
 			exitMenu.SetActive(false);
 			mainMenu.SetActive(true);
 		}
 
 		public void  DisablePlayCampaign(){
-			playMenu.SetActive(false);
+			mainMenu.SetActive(true);
 		}
-
-		public void PlayHover(){
-			hoverSound.Play();
-		}
-
-		public void PlaySFXHover(){
-			sliderSound.Play();
-		}
-
-		public void PlaySwoosh(){
-			swooshSound.Play();
-		}
+		
 
 		// Are You Sure - Quit Panel Pop Up
 		public void AreYouSure(){
