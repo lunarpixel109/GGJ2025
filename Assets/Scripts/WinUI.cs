@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoseUI : MonoBehaviour {
+public class WinUI : MonoBehaviour {
 
     public Image panelBackground;
     public GameObject ui;
@@ -13,7 +13,7 @@ public class LoseUI : MonoBehaviour {
 
     private void Start() {
         restartButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         });
 
         quitButton.onClick.AddListener(() => {

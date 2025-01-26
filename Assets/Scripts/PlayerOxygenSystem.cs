@@ -42,14 +42,16 @@ namespace GGJ2025 {
 
 
 		private void OnTriggerEnter(Collider other) {
-			if (other.gameObject.name == "OxyDome") {
+			Debug.Log("Trigger Enter");
+			if (other.gameObject.GetComponentInParent<Transform>().name == "OxyDome") {
 				Debug.Log("Player entered oxygen");
 				isInOxygen = true;
 			}
 		}
 
 		private void OnTriggerExit(Collider other) {
-			if (other.gameObject.name == "OxyDome") {
+			Debug.Log("Trigger Exit");
+			if (other.gameObject.GetComponentInParent<Transform>().name == "OxyDome") {
 				Debug.Log("Player exited oxygen");
 				isInOxygen = false;
 			}

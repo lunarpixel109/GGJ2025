@@ -19,7 +19,7 @@ namespace GGJ2025.InteractionSystem {
 
 		private void Update() {
 
-			if (Input.GetKeyDown(KeyCode.E) && canInteract) {
+			if (Input.GetKeyDown(KeyCode.E) && canInteract && other != null) {
 				other.Interact();
 			}
 
@@ -30,6 +30,11 @@ namespace GGJ2025.InteractionSystem {
 			if (other != null) {
 				canInteract = true;
 			}
+		}
+
+		private void OnTriggerExit(Collider other) {
+			this.other = null;
+			canInteract = false;
 		}
 	}
 }
