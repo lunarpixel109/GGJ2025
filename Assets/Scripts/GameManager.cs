@@ -9,7 +9,7 @@ namespace GGJ2025 {
 	public class GameManager : MonoBehaviour {
 
 		private float GameTime;
-		private bool IsGameRunning;
+		private bool _isGameRunning;
 
         public OxygenGeneratorSystem[] oxygenBubbles;
 
@@ -32,8 +32,7 @@ namespace GGJ2025 {
 					break;
 				}
 
-                if (IsGameRunning)
-                {
+                if (_isGameRunning) {
                     GameTime += Time.deltaTime;
                 }
             }
@@ -48,6 +47,10 @@ namespace GGJ2025 {
 			Debug.Log("Game Lost");
 			loseUI.SetActive(true);
 			playerObject.SetActive(false);
+			_isGameRunning = false;
+			if (PlayerPrefs.GetFloat("HighScore") < GameTime) {
+				PlayerPrefs.SetFloat("HighScore", GameTime);
+			}
 		}
 	}
 }
