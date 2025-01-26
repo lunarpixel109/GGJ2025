@@ -42,8 +42,8 @@ namespace GGJ2025 {
 
 
 		private void OnTriggerEnter(Collider other) {
-			Debug.Log("Trigger Enter");
-			if (other.gameObject.GetComponentInParent<Transform>().name == "OxyDome") {
+			Debug.Log($"Trigger Enter: {other.gameObject.GetComponentInParent<Transform>().tag}");
+			if (other.gameObject.GetComponent<Transform>().parent.tag == "OxyDome") {
 				Debug.Log("Player entered oxygen");
 				isInOxygen = true;
 			}
@@ -51,7 +51,7 @@ namespace GGJ2025 {
 
 		private void OnTriggerExit(Collider other) {
 			Debug.Log("Trigger Exit");
-			if (other.gameObject.GetComponentInParent<Transform>().name == "OxyDome") {
+			if (other.gameObject.GetComponent<Transform>().parent.tag == "OxyDome") {
 				Debug.Log("Player exited oxygen");
 				isInOxygen = false;
 			}
