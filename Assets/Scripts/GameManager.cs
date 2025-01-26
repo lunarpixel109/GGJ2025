@@ -8,7 +8,10 @@ using UnityRandom = UnityEngine.Random;
 namespace GGJ2025 {
 	public class GameManager : MonoBehaviour {
 
-		public OxygenGeneratorSystem[] oxygenBubbles;
+		private float GameTime;
+		private bool IsGameRunning;
+
+        public OxygenGeneratorSystem[] oxygenBubbles;
 
 		public GameObject playerObject;
 		public GameObject loseUI;
@@ -28,7 +31,12 @@ namespace GGJ2025 {
 					allOn = false;
 					break;
 				}
-			}
+
+                if (IsGameRunning)
+                {
+                    GameTime += Time.deltaTime;
+                }
+            }
 
 			if (allOn) {
 				winUI.SetActive(true);
