@@ -21,10 +21,11 @@ public class WinUI : MonoBehaviour {
         });
 
         GetComponent<LeantweenCustomAnimator>().OnUpdate_float.AddListener(Fade);
+        GetComponent<LeantweenCustomAnimator>().OnCompletion.AddListener(() => {
+            ui.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        });
         GetComponent<LeantweenCustomAnimator>().PlayAnimation();
-
-        ui.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
     }
 
     void Fade(float value) {

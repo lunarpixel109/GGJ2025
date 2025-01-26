@@ -22,6 +22,8 @@ namespace GGJ2025 {
 		[Header("Oxygen System UI")]
 		//public Slider oxygenSlider;
 		public TextMeshProUGUI oxygenText;
+		public Color startColor;
+		public Color endColor;
 
 		private void Update() {
 			if (isInOxygen) {
@@ -34,9 +36,11 @@ namespace GGJ2025 {
 
 			//oxygenSlider.value = oxygenLevel;
 			oxygenText.text = $"Oxygen Level: {oxygenLevel:F0}%";
+			oxygenText.color = Color.Lerp(endColor, startColor, oxygenLevel / 100f);
 
 			if (oxygenLevel <= 0) {
 				Debug.Log("Player died");
+				FindFirstObjectByType<GameManager>().LoseGame();
 			}
 		}
 

@@ -21,12 +21,18 @@ namespace GGJ2025 {
 
 		public TextMeshProUGUI timerText;
 
+		public int level;
+
 		private void Start() {
 			Cursor.lockState = CursorLockMode.Locked;
 			_isGameRunning = true;
 			oxygenBubbles = FindObjectsByType<OxygenGeneratorSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 			if (oxygenBubbles.Length == 0) {
 				throw new Exception("No Oxygen Bubbles found in scene");
+			}
+
+			if(Mathf.Approximately(PlayerPrefs.GetFloat($"HighScore{level}", -1), -1)) {
+				PlayerPrefs.SetFloat($"HighScore{level}", float.MaxValue);
 			}
 		}
 
@@ -50,9 +56,9 @@ namespace GGJ2025 {
 			if (allOn) {
 				winUI.SetActive(true);
 				playerObject.SetActive(false);
-				PlayerPrefs.SetFloat($"CurrentScore{SceneManager.GetActiveScene().buildIndex}", GameTime);
-				if (PlayerPrefs.GetFloat($"HighScore{SceneManager.GetActiveScene().buildIndex}", float.MaxValue) < GameTime) {
-					PlayerPrefs.SetFloat($"HighScore{SceneManager.GetActiveScene().buildIndex}", GameTime);
+				PlayerPrefs.SetFloat($"CurrentScore{level}", GameTime);
+				if (PlayerPrefs.GetFloat($"HighScore{level}") > GameTime) {
+					PlayerPrefs.SetFloat($"HighScore{level}", GameTime);
 				}
 				PlayerPrefs.Save();
 				_isGameRunning = false;
